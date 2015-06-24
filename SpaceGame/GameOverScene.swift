@@ -14,6 +14,7 @@ import CoreMotion
 class GameOverScene: SKScene
 {
 
+
     required init?(coder aDecoder: NSCoder)
     {
         super.init(coder: aDecoder)
@@ -23,6 +24,8 @@ class GameOverScene: SKScene
     override init(size: CGSize)
     {
         super.init(size: size)
+
+        
     }
     
 }

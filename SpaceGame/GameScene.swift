@@ -54,7 +54,6 @@ class GameScene: SKScene
     }
 
 
-
     func addPlayer()
     {
         // Add the player.
