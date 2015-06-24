@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		40DC8B6D1B3B0A9A00B591E7 /* GameOverScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40DC8B6C1B3B0A9A00B591E7 /* GameOverScene.swift */; };
 		A444C3281B3B031B0055C5D0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A444C3271B3B031B0055C5D0 /* AppDelegate.swift */; };
 		A444C32C1B3B031B0055C5D0 /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = A444C32B1B3B031B0055C5D0 /* GameScene.swift */; };
 		A444C32E1B3B031B0055C5D0 /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A444C32D1B3B031B0055C5D0 /* GameViewController.swift */; };
@@ -28,6 +29,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		40DC8B6C1B3B0A9A00B591E7 /* GameOverScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameOverScene.swift; sourceTree = "<group>"; };
 		A444C3221B3B031B0055C5D0 /* SpaceGame.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SpaceGame.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A444C3261B3B031B0055C5D0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A444C3271B3B031B0055C5D0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -83,6 +85,7 @@
 			children = (
 				A444C34D1B3B074B0055C5D0 /* MainMenuScene.swift */,
 				A444C32B1B3B031B0055C5D0 /* GameScene.swift */,
+				40DC8B6C1B3B0A9A00B591E7 /* GameOverScene.swift */,
 				A444C32D1B3B031B0055C5D0 /* GameViewController.swift */,
 				A444C3271B3B031B0055C5D0 /* AppDelegate.swift */,
 				A444C32F1B3B031B0055C5D0 /* Main.storyboard */,
@@ -218,6 +221,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				40DC8B6D1B3B0A9A00B591E7 /* GameOverScene.swift in Sources */,
 				A444C32C1B3B031B0055C5D0 /* GameScene.swift in Sources */,
 				A444C32E1B3B031B0055C5D0 /* GameViewController.swift in Sources */,
 				A444C34E1B3B074B0055C5D0 /* MainMenuScene.swift in Sources */,
@@ -417,6 +421,7 @@
 				A444C3471B3B031B0055C5D0 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		A444C3481B3B031B0055C5D0 /* Build configuration list for PBXNativeTarget "SpaceGameTests" */ = {
 			isa = XCConfigurationList;
@@ -425,6 +430,7 @@
 				A444C34A1B3B031B0055C5D0 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
