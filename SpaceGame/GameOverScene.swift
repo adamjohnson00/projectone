@@ -6,4 +6,23 @@
 //  Copyright (c) 2015 Adam. All rights reserved.
 //
 
+
 import Foundation
+import SpriteKit
+import CoreMotion
+
+
+class GameOverScene: SKScene
+{
+
+    required init?(coder aDecoder: NSCoder)
+    {
+        super.init(coder: aDecoder)
+    }
+
+
+    override init(size: CGSize)
+    {
+        super.init(size: size)
+    }
+}
