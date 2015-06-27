@@ -18,6 +18,8 @@
 		A444C3361B3B031B0055C5D0 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = A444C3341B3B031B0055C5D0 /* LaunchScreen.xib */; };
 		A444C3421B3B031B0055C5D0 /* SpaceGameTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A444C3411B3B031B0055C5D0 /* SpaceGameTests.swift */; };
 		A444C34E1B3B074B0055C5D0 /* MainMenuScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = A444C34D1B3B074B0055C5D0 /* MainMenuScene.swift */; };
+		A4D87DA81B3DC36C002C25D3 /* MyParticle.sks in Resources */ = {isa = PBXBuildFile; fileRef = A4D87DA61B3DC36C002C25D3 /* MyParticle.sks */; };
+		A4D87DA91B3DC36C002C25D3 /* spark.png in Resources */ = {isa = PBXBuildFile; fileRef = A4D87DA71B3DC36C002C25D3 /* spark.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -46,6 +48,8 @@
 		A444C3401B3B031B0055C5D0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A444C3411B3B031B0055C5D0 /* SpaceGameTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpaceGameTests.swift; sourceTree = "<group>"; };
 		A444C34D1B3B074B0055C5D0 /* MainMenuScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainMenuScene.swift; sourceTree = "<group>"; };
+		A4D87DA61B3DC36C002C25D3 /* MyParticle.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = MyParticle.sks; sourceTree = "<group>"; };
+		A4D87DA71B3DC36C002C25D3 /* spark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = spark.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -103,6 +107,8 @@
 		A444C3251B3B031B0055C5D0 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				A4D87DA61B3DC36C002C25D3 /* MyParticle.sks */,
+				A4D87DA71B3DC36C002C25D3 /* spark.png */,
 				A41F44D01B3CB70F000B545A /* blast.wav */,
 				A41F44CE1B3CB696000B545A /* lowblast.wav */,
 				A444C3261B3B031B0055C5D0 /* Info.plist */,
@@ -208,7 +214,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				A41F44CF1B3CB696000B545A /* lowblast.wav in Resources */,
+				A4D87DA81B3DC36C002C25D3 /* MyParticle.sks in Resources */,
 				A444C3361B3B031B0055C5D0 /* LaunchScreen.xib in Resources */,
+				A4D87DA91B3DC36C002C25D3 /* spark.png in Resources */,
 				A41F44D11B3CB70F000B545A /* blast.wav in Resources */,
 				A444C3331B3B031B0055C5D0 /* Images.xcassets in Resources */,
 				A444C3311B3B031B0055C5D0 /* Main.storyboard in Resources */,

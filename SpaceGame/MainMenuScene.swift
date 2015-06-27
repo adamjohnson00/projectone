@@ -34,10 +34,10 @@ class MainMenuScene: SKScene
 
     func addMainMenuSceneLabels()
     {
-        titleLabel.text = "Title Screen"
+        titleLabel.text = "Solar Savior"
         titleLabel.fontSize = 40
         titleLabel.fontColor = SKColor.whiteColor()
-        titleLabel.position = CGPointMake(size.width / 2, size.height / 2)
+        titleLabel.position = CGPointMake(size.width / 2, size.height / 2 + 80)
         addChild(titleLabel)
 
         tapScreenLabel.text = "Tap Screen To Begin"
