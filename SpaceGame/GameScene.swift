@@ -43,7 +43,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate
 
     var gun = 1
 
-    var blastlimit = 1
+    //var blastlimit = 1
 
     var fireExplosion : SKEmitterNode?
     var fireTimer : NSTimer?
@@ -78,7 +78,23 @@ class GameScene: SKScene, SKPhysicsContactDelegate
         addPlayer()
 
         addBadGuyTest()
+    }
 
+
+
+    func addBackground()
+    {
+        // Sets the Background image to backgroundNode.
+        backgroundNode = SKSpriteNode(imageNamed: "paintbackgroundfour")
+
+        // Sets the background's anchor point.
+        backgroundNode!.anchorPoint = CGPoint(x: 0.5, y: 0.0)
+
+        // Sets the background's position.
+        backgroundNode!.position = CGPoint(x: self.size.width / 2.0, y: 0.0)
+
+        // Adds the background node.
+        addChild(backgroundNode!)
     }
 
 
@@ -87,10 +103,45 @@ class GameScene: SKScene, SKPhysicsContactDelegate
 
 
 
+    func addPlayer()
+    {
+
+        playerNode = SKSpriteNode(imageNamed: "shipship2")
+
+        playerNode!.anchorPoint = CGPoint(x: 0.5, y: 0.5)
+
+        playerNode!.position = CGPoint(x: self.size.width / 2.0, y: 50.0)
+
+
+        // Add physics body to playerNode.
+        playerNode!.physicsBody = SKPhysicsBody(circleOfRadius: playerNode!.size.width / 2)
+
+        playerNode!.physicsBody!.dynamic = false
+
+
+        //        Add simulated air friction.
+        //        playerNode!.physicsBody!.linearDamping = 1.0
+
+        //        Turns off rotation when collided with.
+        //        playerNode!.physicsBody!.allowsRotation = false
+
+        //        Setting up the bit masks for playerNode.
+        //        playerNode!.physicsBody!.categoryBitMask = CollisionCategoryPlayer
+        //        playerNode!.physicsBody!.contactTestBitMask = CollisionCategoryPowerUpOrbs | CollisionCategoryBlackHoles
+        //        playerNode!.physicsBody!.collisionBitMask = 0
+        
+        addChild(playerNode!)
+    }
+    
 
 
 
 
+
+
+
+
+    // There's a super small node attached to every bad guy.  The explosion happens at this node once the bad guy is shot and removed from the project.
     func secretNode()
     {
         secretnode = SKSpriteNode(imageNamed: "secretnode")
@@ -126,77 +177,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate
 
 
 
-    func addBackground()
-    {
-        // Sets the Background image to backgroundNode.
-        backgroundNode = SKSpriteNode(imageNamed: "paintbackgroundfour")
-
-        // Sets the background's anchor point.
-        backgroundNode!.anchorPoint = CGPoint(x: 0.5, y: 0.0)
-
-        // Sets the background's position.
-        backgroundNode!.position = CGPoint(x: self.size.width / 2.0, y: 0.0)
-
-        // Adds the background node.
-        addChild(backgroundNode!)
-    }
 
 
-
-
-
-
-
-
-
-
-
-
-
-    func addPlayer()
-    {
-
-        playerNode = SKSpriteNode(imageNamed: "shipship2")
-
-        playerNode!.anchorPoint = CGPoint(x: 0.5, y: 0.5)
-
-        playerNode!.position = CGPoint(x: self.size.width / 2.0, y: 50.0)
-
-
-        // Add physics body to playerNode.
-        playerNode!.physicsBody = SKPhysicsBody(circleOfRadius: playerNode!.size.width / 2)
-
-        playerNode!.physicsBody!.dynamic = false
-
-
-//        Add simulated air friction.
-//        playerNode!.physicsBody!.linearDamping = 1.0
-
-//        Turns off rotation when collided with.
-//        playerNode!.physicsBody!.allowsRotation = false
-
-//        Setting up the bit masks for playerNode.
-//        playerNode!.physicsBody!.categoryBitMask = CollisionCategoryPlayer
-//        playerNode!.physicsBody!.contactTestBitMask = CollisionCategoryPowerUpOrbs | CollisionCategoryBlackHoles
-//        playerNode!.physicsBody!.collisionBitMask = 0
-
-        addChild(playerNode!)
-    }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    // Green blob.
     func addBadGuyTest()
     {
         badguytest = SKSpriteNode(imageNamed: "badguytest")
@@ -235,7 +218,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate
 
 
 
-
+    // This method runs every time the screen is touched.  Right now it just makes the ship shoot from four different points.
     override func touchesBegan(touches: Set <NSObject>, withEvent event: UIEvent)
     {
         if gun == 1
@@ -270,7 +253,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate
 
 
 
-
+    // This method executes whenever a laser blast runs into a bad guy.
     func didBeginContact(contact: SKPhysicsContact)
     {
         // nodeA and bodyA are the "badguytest" node.
@@ -303,15 +286,17 @@ class GameScene: SKScene, SKPhysicsContactDelegate
 
 
 
-
+    // This is the code that causes the fire explosion when a bad guy dies.
     func explode()
     {
         fireExplosion!.hidden = false
 
-        NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: "hideExplosion:", userInfo: nil, repeats: false)
+        NSTimer.scheduledTimerWithTimeInterval(5, target: self, selector: "hideExplosion:", userInfo: nil, repeats: false)
     }
 
 
+
+    // Turns the explosion off after a few seconds.
     func hideExplosion(timer: NSTimer!)
     {
         if !fireExplosion!.hidden == true
@@ -340,10 +325,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate
 
     override func update(currentTime: NSTimeInterval)
     {
-        if badguytestlife == 3
-        {
-
-        }
+//        if badguytestlife == 3
+//        {
+//
+//        }
     }
 
 
@@ -384,7 +369,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate
         addChild(blueLaserOne!)
 
         // Creates the action that moves the laser blast up the screen.
-        let moveUpAction = SKAction.moveToY(self.size.height + 20, duration: 0.8)
+        let moveUpAction = SKAction.moveToY(self.size.height + 20, duration: 0.7)
         let moveRightAction = SKAction.moveToX(playerNode!.position.x, duration: 0.6)
 
         // Runs the action.
@@ -420,7 +405,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate
         addChild(blueLaserTwo!)
 
         // Creates the action that moves the laser blast up the screen.
-        let moveUpAction = SKAction.moveToY(self.size.height + 20, duration: 0.8)
+        let moveUpAction = SKAction.moveToY(self.size.height + 20, duration: 0.7)
         let moveLeftAction = SKAction.moveToX(playerNode!.position.x, duration: 0.6)
 
         // Runs the action.
@@ -456,7 +441,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate
         addChild(blueLaserThree!)
 
         // Creates the action that moves the laser blast up the screen.
-        let moveUpAction = SKAction.moveToY(self.size.height + 20, duration: 0.8)
+        let moveUpAction = SKAction.moveToY(self.size.height + 20, duration: 0.7)
         let moveRightAction = SKAction.moveToX(playerNode!.position.x, duration: 0.6)
 
         // Runs the action.
@@ -493,7 +478,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate
         addChild(blueLaserFour!)
 
         // Creates the action that moves the laser blast up the screen.
-        let moveUpAction = SKAction.moveToY(self.size.height + 20, duration: 0.8)
+        let moveUpAction = SKAction.moveToY(self.size.height + 20, duration: 0.7)
         let moveLeftAction = SKAction.moveToX(playerNode!.position.x, duration: 0.6)
         
         // Runs the action.
