@@ -12,6 +12,7 @@ import CoreMotion
 
 class GameScene: SKScene, SKPhysicsContactDelegate
 {
+    
     // Node variables.
     var backgroundNode : SKSpriteNode?
     var playerNode : SKSpriteNode?
@@ -47,17 +48,16 @@ class GameScene: SKScene, SKPhysicsContactDelegate
 
     var fireExplosion : SKEmitterNode?
     var fireTimer : NSTimer?
-
-
-
-    required init?(coder aDecoder: NSCoder)
+    
+    
+        required init?(coder aDecoder: NSCoder)
     {
         super.init(coder: aDecoder)
     }
+    
 
-
-
-    override init(size: CGSize)
+    
+        override init(size: CGSize)
     {
         super.init(size: size)
 
@@ -79,6 +79,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate
 
         addBadGuyTest()
     }
+    
+
 
 
 
@@ -130,7 +132,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate
         //        playerNode!.physicsBody!.contactTestBitMask = CollisionCategoryPowerUpOrbs | CollisionCategoryBlackHoles
         //        playerNode!.physicsBody!.collisionBitMask = 0
         
-        addChild(playerNode!)
+                addChild(playerNode!)
     }
     
 
@@ -169,46 +171,73 @@ class GameScene: SKScene, SKPhysicsContactDelegate
 
 
 
+    func random() -> CGFloat {
+        return CGFloat(Float(arc4random()) / 0xFFFFFFFF)
+    }
+
+
+    func random(#min: CGFloat, max: CGFloat) -> CGFloat {
+        return random() * (max - min) + min
+    }
 
 
 
-
-
-
-
-
-
+    
 
     // Green blob.
     func addBadGuyTest()
     {
-        badguytest = SKSpriteNode(imageNamed: "badguytest")
+        
+        let enemy = SKSpriteNode(imageNamed: "bad")
+        enemy.name = "enemy"
+        //        enemy.position = CGPoint(x: frame.size.width + enemy.size.width/2,
+        //            y: frame.size.height * random(min: 0, max: 1))
+        
+        enemy.position = CGPoint(x: frame.size.width * random(min: 0, max: 1),
+            y: frame.size.height + enemy.size.height/2)
+        
+        
+        enemy.runAction(
+            SKAction.moveByX(0 , y: -size.height - enemy.size.height, duration: NSTimeInterval(random(min:1, max: 2))))
+        
+        
+//        badguytest = SKSpriteNode(imageNamed: "badguytest")
+//
+//        badguytest!.anchorPoint = CGPoint(x: 0.5, y: 0.5)
+//
+//        badguytest!.position = CGPoint(x: self.size.width / 2, y: 400)
+//
+//        badguytest!.physicsBody = SKPhysicsBody(circleOfRadius: badguytest!.size.width / 2)
+//
+//        badguytest!.physicsBody!.dynamic = true
+//
+//        badguytest!.name = "bad_guy_test"
 
-        badguytest!.anchorPoint = CGPoint(x: 0.5, y: 0.5)
+//        // Setting up the bit masks for playerNode.
+//        badguytest!.physicsBody!.categoryBitMask = CollisionCategoryBadGuyTest
+//        badguytest!.physicsBody!.contactTestBitMask = CollisionCategoryBlueLaser
+//        badguytest!.physicsBody!.collisionBitMask = 0
 
-        badguytest!.position = CGPoint(x: self.size.width / 2, y: 400)
+//        let moveRightAction = SKAction.moveToX(self.size.width, duration: 1)
+//        let moveLeftAction = SKAction.moveToX(0.0, duration: 2)
+//        let moveRightAction2 = SKAction.moveToX(self.size.width / 2, duration: 1)
+//
+//        let actionSequence = SKAction.sequence([moveRightAction, moveLeftAction, moveRightAction2])
+//        let moveAction = SKAction.repeatActionForever(actionSequence)
+//
+//        badguytest!.runAction(moveAction)
 
-        badguytest!.physicsBody = SKPhysicsBody(circleOfRadius: badguytest!.size.width / 2)
+        addChild(enemy)
+        
+        
+        }
 
-        badguytest!.physicsBody!.dynamic = true
+    override func didMoveToView(view: SKView) {
+        runAction(SKAction.repeatActionForever(
+            SKAction.sequence([
+                SKAction.runBlock(addBadGuyTest),
+                SKAction.waitForDuration(1.0)])))
 
-        badguytest!.name = "bad_guy_test"
-
-        // Setting up the bit masks for playerNode.
-        badguytest!.physicsBody!.categoryBitMask = CollisionCategoryBadGuyTest
-        badguytest!.physicsBody!.contactTestBitMask = CollisionCategoryBlueLaser
-        badguytest!.physicsBody!.collisionBitMask = 0
-
-        let moveRightAction = SKAction.moveToX(self.size.width, duration: 1)
-        let moveLeftAction = SKAction.moveToX(0.0, duration: 2)
-        let moveRightAction2 = SKAction.moveToX(self.size.width / 2, duration: 1)
-
-        let actionSequence = SKAction.sequence([moveRightAction, moveLeftAction, moveRightAction2])
-        let moveAction = SKAction.repeatActionForever(actionSequence)
-
-        badguytest!.runAction(moveAction)
-
-        addChild(badguytest!)
     }
 
 
@@ -305,20 +334,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate
         }
     }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    
 
 
 
