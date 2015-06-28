@@ -25,6 +25,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate
 
     var secretnode : SKSpriteNode?
 
+    var secretscrollnode : SKSpriteNode?
+
     var explosiontest : SKSpriteNode?
 
     // Sound variables.
@@ -78,6 +80,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate
         addPlayer()
 
         addBadGuyTest()
+
+        addScrollNode()
     }
     
 
@@ -101,6 +105,20 @@ class GameScene: SKScene, SKPhysicsContactDelegate
 
 
 
+    func addScrollNode()
+    {
+        secretscrollnode = SKSpriteNode(imageNamed: "bad")
+
+        secretscrollnode!.anchorPoint = CGPoint(x: 0.5, y: 0.5)
+
+        secretscrollnode!.position = CGPoint(x: -20, y: 0.0)
+
+        let moveUpAction = SKAction.moveToY(self.size.height, duration: 10)
+
+        secretscrollnode!.runAction(moveUpAction)
+
+        addChild(secretscrollnode!)
+    }
 
 
 
@@ -152,9 +170,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate
 
         secretnode!.position = CGPoint(x: badguytest!.position.x, y: badguytest!.position.y)
 
-        secretnode!.physicsBody = SKPhysicsBody(circleOfRadius: secretnode!.size.width / 2)
+        //secretnode!.physicsBody = SKPhysicsBody(circleOfRadius: secretnode!.size.width / 2)
 
-        secretnode!.physicsBody!.dynamic = false
+        //secretnode!.physicsBody!.dynamic = false
 
         let firePath = NSBundle.mainBundle().pathForResource("MyParticle", ofType: "sks")
 
@@ -171,12 +189,14 @@ class GameScene: SKScene, SKPhysicsContactDelegate
 
 
 
-    func random() -> CGFloat {
+    func random() -> CGFloat
+    {
         return CGFloat(Float(arc4random()) / 0xFFFFFFFF)
     }
 
 
-    func random(#min: CGFloat, max: CGFloat) -> CGFloat {
+    func random(#min: CGFloat, max: CGFloat) -> CGFloat
+    {
         return random() * (max - min) + min
     }
 
@@ -194,14 +214,17 @@ class GameScene: SKScene, SKPhysicsContactDelegate
         //            y: frame.size.height * random(min: 0, max: 1))
         
         enemy.position = CGPoint(x: frame.size.width * random(min: 0, max: 1),
-            y: frame.size.height + enemy.size.height/2)
+            y: frame.size.height + enemy.size.height / 2)
         
         
         enemy.runAction(
-            SKAction.moveByX(0 , y: -size.height - enemy.size.height, duration: NSTimeInterval(random(min:1, max: 2))))
+            SKAction.moveByX(0 , y: -size.height - enemy.size.height, duration: NSTimeInterval(random(min:3, max: 8))))
         
-        
-//        badguytest = SKSpriteNode(imageNamed: "badguytest")
+// --------------------------
+
+
+
+//        badguytest = SKSpriteNode(imageNamed: "bad")
 //
 //        badguytest!.anchorPoint = CGPoint(x: 0.5, y: 0.5)
 //
@@ -212,12 +235,12 @@ class GameScene: SKScene, SKPhysicsContactDelegate
 //        badguytest!.physicsBody!.dynamic = true
 //
 //        badguytest!.name = "bad_guy_test"
-
+//
 //        // Setting up the bit masks for playerNode.
 //        badguytest!.physicsBody!.categoryBitMask = CollisionCategoryBadGuyTest
 //        badguytest!.physicsBody!.contactTestBitMask = CollisionCategoryBlueLaser
 //        badguytest!.physicsBody!.collisionBitMask = 0
-
+//
 //        let moveRightAction = SKAction.moveToX(self.size.width, duration: 1)
 //        let moveLeftAction = SKAction.moveToX(0.0, duration: 2)
 //        let moveRightAction2 = SKAction.moveToX(self.size.width / 2, duration: 1)
@@ -226,17 +249,22 @@ class GameScene: SKScene, SKPhysicsContactDelegate
 //        let moveAction = SKAction.repeatActionForever(actionSequence)
 //
 //        badguytest!.runAction(moveAction)
+//        addChild(badguytest!)
+
+//        ------------
 
         addChild(enemy)
-        
-        
-        }
 
-    override func didMoveToView(view: SKView) {
+    }
+
+
+
+    override func didMoveToView(view: SKView)
+    {
         runAction(SKAction.repeatActionForever(
             SKAction.sequence([
                 SKAction.runBlock(addBadGuyTest),
-                SKAction.waitForDuration(1.0)])))
+                SKAction.waitForDuration(2)])))
 
     }
 
@@ -341,10 +369,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate
 
     override func update(currentTime: NSTimeInterval)
     {
-//        if badguytestlife == 3
-//        {
-//
-//        }
+        backgroundNode!.position = CGPointMake(self.backgroundNode!.position.x, -(secretscrollnode!.position.y / 3))
     }
 
 
@@ -434,6 +459,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate
 
         gun = 3
     }
+
+
 
 
     func shootLaserThree()
