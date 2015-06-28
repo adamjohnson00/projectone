@@ -291,7 +291,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate
     {
         fireExplosion!.hidden = false
 
-        NSTimer.scheduledTimerWithTimeInterval(5, target: self, selector: "hideExplosion:", userInfo: nil, repeats: false)
+        NSTimer.scheduledTimerWithTimeInterval(1.2, target: self, selector: "hideExplosion:", userInfo: nil, repeats: false)
     }
 
 
@@ -370,7 +370,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate
 
         // Creates the action that moves the laser blast up the screen.
         let moveUpAction = SKAction.moveToY(self.size.height + 20, duration: 0.7)
-        let moveRightAction = SKAction.moveToX(playerNode!.position.x, duration: 0.6)
+        let moveRightAction = SKAction.moveToX(playerNode!.position.x, duration: 2)
 
         // Runs the action.
         blueLaserOne!.runAction(moveUpAction)
@@ -422,7 +422,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate
 
     func shootLaserThree()
     {
-        blueLaserThree = SKSpriteNode(imageNamed: "bluelaserwhiteborder")
+        blueLaserThree = SKSpriteNode(imageNamed: "redlaserwhiteborder")
 
         blueLaserThree!.anchorPoint = CGPoint(x: 0.5, y: 0.5)
 
@@ -459,7 +459,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate
 
     func shootLaserFour()
     {
-        blueLaserFour = SKSpriteNode(imageNamed: "redlaserwhiteborder")
+        blueLaserFour = SKSpriteNode(imageNamed: "bluelaserwhiteborder")
 
         blueLaserFour!.anchorPoint = CGPoint(x: 0.5, y: 0.5)
 
