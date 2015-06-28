@@ -225,6 +225,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate
 
 
 //        badguytest = SKSpriteNode(imageNamed: "bad")
+
 //
 //        badguytest!.anchorPoint = CGPoint(x: 0.5, y: 0.5)
 //
@@ -265,6 +266,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate
             SKAction.sequence([
                 SKAction.runBlock(addBadGuyTest),
                 SKAction.waitForDuration(2)])))
+
 
     }
 
