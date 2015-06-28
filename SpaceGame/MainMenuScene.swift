@@ -12,8 +12,8 @@ import CoreMotion
 
 class MainMenuScene: SKScene
 {
-    var titleLabel = SKLabelNode(fontNamed: "Copperplate")
-    var tapScreenLabel = SKLabelNode(fontNamed: "Copperplate")
+    var titleLabel = SKLabelNode(fontNamed: "Thonburi-Light")
+    var tapScreenLabel = SKLabelNode(fontNamed: "SpaceOne")
 
 
     required init?(coder aDecoder: NSCoder)

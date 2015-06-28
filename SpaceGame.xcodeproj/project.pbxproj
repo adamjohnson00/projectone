@@ -48,6 +48,7 @@
 		A444C3401B3B031B0055C5D0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A444C3411B3B031B0055C5D0 /* SpaceGameTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpaceGameTests.swift; sourceTree = "<group>"; };
 		A444C34D1B3B074B0055C5D0 /* MainMenuScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainMenuScene.swift; sourceTree = "<group>"; };
+		A4D31B9A1B40B0FB00411642 /* space Xrebron.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "space Xrebron.ttf"; sourceTree = "<group>"; };
 		A4D87DA61B3DC36C002C25D3 /* MyParticle.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = MyParticle.sks; sourceTree = "<group>"; };
 		A4D87DA71B3DC36C002C25D3 /* spark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = spark.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -109,6 +110,7 @@
 			children = (
 				A4D87DA61B3DC36C002C25D3 /* MyParticle.sks */,
 				A4D87DA71B3DC36C002C25D3 /* spark.png */,
+				A4D31B9A1B40B0FB00411642 /* space Xrebron.ttf */,
 				A41F44D01B3CB70F000B545A /* blast.wav */,
 				A41F44CE1B3CB696000B545A /* lowblast.wav */,
 				A444C3261B3B031B0055C5D0 /* Info.plist */,
