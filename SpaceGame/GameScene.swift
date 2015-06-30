@@ -206,25 +206,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate
 
 
 
-//    func addScrollNode()
-//    {
-//        secretscrollnode = SKSpriteNode(imageNamed: "bad")
-//
-//        secretscrollnode!.anchorPoint = CGPoint(x: 0.5, y: 0.5)
-//
-//        secretscrollnode!.position = CGPoint(x: 20, y: 0.0)
-//
-//        let moveUpAction = SKAction.moveToY(12000, duration: 20.0)
-//
-//        secretscrollnode!.runAction(moveUpAction)
-//
-//        addChild(secretscrollnode!)
-//    }
-
-
-
-
-
     func random() -> CGFloat
     {
         return CGFloat(Float(arc4random()) / 0xFFFFFFFF)
