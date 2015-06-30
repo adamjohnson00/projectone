@@ -34,7 +34,7 @@ class MainMenuScene: SKScene
 
     func addMainMenuSceneLabels()
     {
-        titleLabel.text = "Solar Savior"
+        titleLabel.text = "Space Savior"
         titleLabel.fontSize = 40
         titleLabel.fontColor = SKColor.whiteColor()
         titleLabel.position = CGPointMake(size.width / 2, size.height / 2 + 80)

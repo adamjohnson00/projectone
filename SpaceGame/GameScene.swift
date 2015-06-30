@@ -12,7 +12,6 @@ import CoreMotion
 
 class GameScene: SKScene, SKPhysicsContactDelegate
 {
-    
     // Node variables.
     var backgroundOne : SKSpriteNode?
     var backgroundTwo : SKSpriteNode?
@@ -55,19 +54,12 @@ class GameScene: SKScene, SKPhysicsContactDelegate
     var fireTimer : NSTimer?
 
 
-
-
-
-    
     required init?(coder aDecoder: NSCoder)
     {
         super.init(coder: aDecoder)
     }
 
 
-
-
-    
     override init(size: CGSize)
     {
         super.init(size: size)
@@ -86,39 +78,32 @@ class GameScene: SKScene, SKPhysicsContactDelegate
 
         addBackground()
 
+        addBackgroundTwo()
+
         addPlayer()
 
         addBadGuyOne()
-
-//        addScrollNode()
     }
-    
-
-
 
 
     func addBackground()
     {
         backgroundOne = SKSpriteNode(imageNamed: "1200")
-        backgroundOne!.anchorPoint = CGPoint(x: 0.5, y: 0.0)
-        backgroundOne!.position = CGPoint(x: self.size.width / 2.0, y: 0.0)
+        backgroundOne!.anchorPoint = CGPoint(x: 0.5, y: 0)
+        backgroundOne!.position = CGPoint(x: self.size.width / 2.0, y: 0)
 
         addChild(backgroundOne!)
+    }
 
 
-        backgroundTwo = SKSpriteNode(imageNamed: "1200two")
-        backgroundTwo!.anchorPoint = CGPoint(x: 0.5, y: 0.0)
+    func addBackgroundTwo()
+    {
+        backgroundTwo = SKSpriteNode(imageNamed: "Background")
+        backgroundTwo!.anchorPoint = CGPoint(x: 0.5, y: 0)
         backgroundTwo!.position = CGPoint(x: self.size.width / 2.0, y: backgroundOne!.position.y + 1200)
 
         addChild(backgroundTwo!)
     }
-
-
-
-
-
-
-
 
 
     func addPlayer()
@@ -252,12 +237,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate
     }
 
 
-
-    
-
-
-
-
     // There's a super small node attached to every bad guy.  The explosion happens at this node once the bad guy is shot and removed from the project.
     func secretNode()
     {
@@ -283,20 +262,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate
         
         addChild(secretnode!)
     }
-
-
-
-    override func didMoveToView(view: SKView)
-    {
-
-
-    }
-
-
-
-
-
-
 
 
     // This method runs every time the screen is touched.  Right now it just makes the ship shoot from four different points.
@@ -328,12 +293,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate
     }
 
 
-
-
-
-
-
-
     // This method executes whenever a laser blast runs into a bad guy.
     func didBeginContact(contact: SKPhysicsContact)
     {
@@ -362,11 +321,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate
     }
 
 
-
-
-
-
-
     // This is the code that causes the fire explosion when a bad guy dies.
     func explode()
     {
@@ -374,7 +328,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate
 
         NSTimer.scheduledTimerWithTimeInterval(1.2, target: self, selector: "hideExplosion:", userInfo: nil, repeats: false)
     }
-
 
 
     // Turns the explosion off after a few seconds.
@@ -385,10 +338,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate
             fireExplosion!.hidden = true
         }
     }
-
-    
-
-
 
 
     override func update(currentTime: NSTimeInterval)
@@ -406,15 +355,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate
             backgroundTwo!.position = CGPointMake(self.size.width / 2, backgroundOne!.position.y + 1200)
         }
     }
-
-
-
-
-
-
-
-
-
 
 
 
@@ -577,39 +517,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate
 
 
 
-
-
-
-
-
-
-
-
-
-//    func nodeForExplosion()
-//    {
-//        explosiontest = SKSpriteNode(imageNamed: "badguytest")
-//
-//        explosiontest!.anchorPoint = CGPoint(x: 0.5, y: 0.5)
-//
-//        explosiontest!.position = CGPoint(x: self.size.width / 2, y: 300)
-//
-//        explosiontest!.physicsBody = SKPhysicsBody(circleOfRadius: badguytest!.size.width / 2)
-//
-//        explosiontest!.physicsBody!.dynamic = true
-//
-//        addChild(explosiontest!)
-//    }
-
-
-
-
-
-
-
-
-
-
     func addBadGuyOne()
     {
         badguytest = SKSpriteNode(imageNamed: "badship")
@@ -644,9 +551,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate
 
         addChild(badguytest!)
     }
-
-
-
 }
 
 
