@@ -36,6 +36,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate
     // Sound variables.
     var shootLowNoiseSoundAction = SKAction.playSoundFileNamed("lowblast.wav", waitForCompletion: false)
     var shootNoiseSoundAction = SKAction.playSoundFileNamed("blast.wav", waitForCompletion: false)
+    var shootLaser = SKAction.playSoundFileNamed("laser.wav", waitForCompletion: false)
+
 
     // For the accelerator.
     var coreMotionManager = CMMotionManager()
@@ -102,7 +104,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate
     {
         backgroundTwo = SKSpriteNode(imageNamed: "sparsespace")
         backgroundTwo!.anchorPoint = CGPoint(x: 0.5, y: 0)
-        backgroundTwo!.position = CGPoint(x: self.size.width / 2.0, y: backgroundOne!.position.y + backgroundOne!.size.height)
+        backgroundTwo!.position = CGPoint(x: self.size.width / 4.0, y: backgroundOne!.position.y + backgroundOne!.size.height)
 
         addChild(backgroundTwo!)
     }
@@ -115,10 +117,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate
 
         playerNode!.anchorPoint = CGPoint(x: 0.5, y: 0.5)
 
-        playerNode!.position = CGPoint(x: self.size.width / 2.0, y: 50.0)
+        playerNode!.position = CGPoint(x: self.size.width / 2.0, y: 200.0) //50
 
         // Add physics body to playerNode.
-        playerNode!.physicsBody = SKPhysicsBody(circleOfRadius: playerNode!.size.width / 2)
+        playerNode!.physicsBody = SKPhysicsBody(circleOfRadius: playerNode!.size.width / 5)
 
         playerNode!.physicsBody!.dynamic = false
 
@@ -127,7 +129,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate
         //        playerNode!.physicsBody!.linearDamping = 1.0
 
         //        Turns off rotation when collided with.
-        //        playerNode!.physicsBody!.allowsRotation = false
+                playerNode!.physicsBody!.allowsRotation = false
 
         //        Setting up the bit masks for playerNode.
         //        playerNode!.physicsBody!.categoryBitMask = CollisionCategoryPlayer
@@ -225,7 +227,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate
     {
         secretnode = SKSpriteNode(imageNamed: "secretnode")
 
-        secretnode!.anchorPoint = CGPoint(x: -15.5, y: 0.5)
+        secretnode!.anchorPoint = CGPoint(x: 0.5, y: 0.5)
 
         secretnode!.position = CGPoint(x: badguytest!.position.x, y: badguytest!.position.y)
 
@@ -250,6 +252,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate
     // This method runs every time the screen is touched.  Right now it just makes the ship shoot from four different points.
     override func touchesBegan(touches: Set <NSObject>, withEvent event: UIEvent)
     {
+        //var y = playerNode!.position.y)
+
         if gun == 1
         {
             shootLaserOne()
@@ -273,46 +277,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate
             shootLaserThree()
             shootLaserFour()
         }
-
-
-
-
-
-        if playerNode != nil
-        {
-            if !playerNode!.physicsBody!.dynamic
-            {
-                // Removes the "Tap Anywhere to Start" label once the screen has been tapped.
-//                startGameTextNode.removeFromParent()
-
-
-
-                playerNode!.physicsBody!.dynamic = true
-
-                self.coreMotionManager.accelerometerUpdateInterval = 0.3
-
-                self.coreMotionManager.startAccelerometerUpdatesToQueue(NSOperationQueue(), withHandler:
-                    {
-                        (data: CMAccelerometerData!, error: NSError!) in
-
-                        if let constVar = error
-                        {
-                            println("An error was encountered.")
-                        }
-                        else
-                        {
-                            self.xAxisAcceleration = CGFloat(data!.acceleration.x)
-                        }
-                })
-            }
-        }
-
-
-        
-
-
-
-
+        //playerNode!.position.y = playerNode!.position.y + 40
     }
 
 
@@ -359,7 +324,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate
 
                 playerNode!.physicsBody!.dynamic = true
 
-                self.coreMotionManager.accelerometerUpdateInterval = 1
+                self.coreMotionManager.accelerometerUpdateInterval = 0.3
 
                 self.coreMotionManager.startAccelerometerUpdatesToQueue(NSOperationQueue(), withHandler:
                     {
@@ -386,15 +351,15 @@ class GameScene: SKScene, SKPhysicsContactDelegate
 
 
             //These two if statements move the player to the oppposite side of the screen if it touches the edge.
-//            if playerNode!.position.x < -(playerNode!.size.width / 2)
-//            {
-//                playerNode!.position = CGPointMake(size.width - playerNode!.size.width / 2, playerNode!.position.y)
-//            }
-//
-//            else if self.playerNode!.position.x > self.size.width
-//            {
-//                playerNode!.position = CGPointMake(playerNode!.size.width / 2, playerNode!.position.y)
-//            }
+            if playerNode!.position.x < -(playerNode!.size.width / 2)
+            {
+                playerNode!.position = CGPointMake(size.width - playerNode!.size.width / 2, playerNode!.position.y)
+            }
+
+            else if self.playerNode!.position.x > self.size.width
+            {
+                playerNode!.position = CGPointMake(playerNode!.size.width / 2, playerNode!.position.y)
+            }
         }
     }
 
@@ -433,9 +398,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate
 
     override func update(currentTime: NSTimeInterval)
     {
-        backgroundOne!.position = CGPointMake(self.size.width / 2, backgroundOne!.position.y - 8)
+        backgroundOne!.position = CGPointMake(self.size.width / 2, backgroundOne!.position.y - 6)
 
-        backgroundTwo!.position = CGPointMake(self.size.width / 2, backgroundTwo!.position.y - 8)
+        backgroundTwo!.position = CGPointMake(self.size.width / 2, backgroundTwo!.position.y - 6)
 
         if backgroundOne!.position.y < -800 //-backgroundOne!.size.height
         {
@@ -446,6 +411,49 @@ class GameScene: SKScene, SKPhysicsContactDelegate
         {
             backgroundTwo!.position = CGPointMake(self.size.width / 2, backgroundOne!.position.y + 800)
         }
+
+
+
+
+
+        if playerNode != nil
+        {
+            //            if !playerNode!.physicsBody!.dynamic == false
+            //            {
+            // Removes the "Tap Anywhere to Start" label once the screen has been tapped.
+            //                startGameTextNode.removeFromParent()
+
+
+
+            //playerNode!.physicsBody!.dynamic = true
+
+            self.coreMotionManager.accelerometerUpdateInterval = 0.1
+
+            self.coreMotionManager.startAccelerometerUpdatesToQueue(NSOperationQueue(), withHandler:
+                {
+                    (data: CMAccelerometerData!, error: NSError!) in
+
+                    if let constVar = error
+                    {
+                        println("An error was encountered.")
+                    }
+                    else
+                    {
+                        self.xAxisAcceleration = CGFloat(data!.acceleration.x)
+                    }
+            })
+            //}
+        }
+
+
+
+
+
+
+
+
+
+
     }
 
 
@@ -464,7 +472,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate
 
         blueLaserOne!.anchorPoint = CGPoint(x: 0.5, y: 0.5)
 
-        blueLaserOne!.position = CGPoint(x: playerNode!.position.x - 10, y: playerNode!.position.y + 55) //24
+        blueLaserOne!.position = CGPoint(x: playerNode!.position.x - 10, y: playerNode!.position.y + 80) //24
 
         blueLaserOne!.physicsBody = SKPhysicsBody(circleOfRadius: blueLaserOne!.size.width / 2)
 
@@ -487,10 +495,11 @@ class GameScene: SKScene, SKPhysicsContactDelegate
         blueLaserOne!.runAction(moveRightAction)
 
         // Plays sound when laser blast is created.  (Two sounds are played at the same time.)
-        runAction(shootLowNoiseSoundAction)
-        runAction(shootNoiseSoundAction)
+//        runAction(shootLowNoiseSoundAction)
+//        runAction(shootNoiseSoundAction)
+        runAction(shootLaser)
 
-        gun = 2
+        gun = 1
     }
 
 
@@ -500,7 +509,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate
 
         blueLaserTwo!.anchorPoint = CGPoint(x: 0.5, y: 0.5)
 
-        blueLaserTwo!.position = CGPoint(x: playerNode!.position.x + 10, y: playerNode!.position.y + 55)
+        blueLaserTwo!.position = CGPoint(x: playerNode!.position.x + 10, y: playerNode!.position.y + 80)
 
         blueLaserTwo!.physicsBody = SKPhysicsBody(circleOfRadius: blueLaserTwo!.size.width / 2)
 
@@ -536,7 +545,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate
 
         blueLaserThree!.anchorPoint = CGPoint(x: 0.5, y: 0.5)
 
-        blueLaserThree!.position = CGPoint(x: playerNode!.position.x - 25, y: playerNode!.position.y + 55)
+        blueLaserThree!.position = CGPoint(x: playerNode!.position.x - 25, y: playerNode!.position.y + 80)
 
         blueLaserThree!.physicsBody = SKPhysicsBody(circleOfRadius: blueLaserThree!.size.width / 2)
 
@@ -573,7 +582,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate
 
         blueLaserFour!.anchorPoint = CGPoint(x: 0.5, y: 0.5)
 
-        blueLaserFour!.position = CGPoint(x: playerNode!.position.x + 25, y: playerNode!.position.y + 55)
+        blueLaserFour!.position = CGPoint(x: playerNode!.position.x + 25, y: playerNode!.position.y + 80)
 
         blueLaserFour!.physicsBody = SKPhysicsBody(circleOfRadius: blueLaserFour!.size.width / 2)
 

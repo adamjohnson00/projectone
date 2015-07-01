@@ -20,6 +20,7 @@
 		A444C34E1B3B074B0055C5D0 /* MainMenuScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = A444C34D1B3B074B0055C5D0 /* MainMenuScene.swift */; };
 		A4D87DA81B3DC36C002C25D3 /* MyParticle.sks in Resources */ = {isa = PBXBuildFile; fileRef = A4D87DA61B3DC36C002C25D3 /* MyParticle.sks */; };
 		A4D87DA91B3DC36C002C25D3 /* spark.png in Resources */ = {isa = PBXBuildFile; fileRef = A4D87DA71B3DC36C002C25D3 /* spark.png */; };
+		A4DCF9C61B43A0E5000405A9 /* laser.wav in Resources */ = {isa = PBXBuildFile; fileRef = A4DCF9C51B43A0E5000405A9 /* laser.wav */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -51,6 +52,7 @@
 		A4D31B9A1B40B0FB00411642 /* space Xrebron.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "space Xrebron.ttf"; sourceTree = "<group>"; };
 		A4D87DA61B3DC36C002C25D3 /* MyParticle.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = MyParticle.sks; sourceTree = "<group>"; };
 		A4D87DA71B3DC36C002C25D3 /* spark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = spark.png; sourceTree = "<group>"; };
+		A4DCF9C51B43A0E5000405A9 /* laser.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = laser.wav; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -112,6 +114,7 @@
 				A4D87DA71B3DC36C002C25D3 /* spark.png */,
 				A4D31B9A1B40B0FB00411642 /* space Xrebron.ttf */,
 				A41F44D01B3CB70F000B545A /* blast.wav */,
+				A4DCF9C51B43A0E5000405A9 /* laser.wav */,
 				A41F44CE1B3CB696000B545A /* lowblast.wav */,
 				A444C3261B3B031B0055C5D0 /* Info.plist */,
 			);
@@ -219,6 +222,7 @@
 				A4D87DA81B3DC36C002C25D3 /* MyParticle.sks in Resources */,
 				A444C3361B3B031B0055C5D0 /* LaunchScreen.xib in Resources */,
 				A4D87DA91B3DC36C002C25D3 /* spark.png in Resources */,
+				A4DCF9C61B43A0E5000405A9 /* laser.wav in Resources */,
 				A41F44D11B3CB70F000B545A /* blast.wav in Resources */,
 				A444C3331B3B031B0055C5D0 /* Images.xcassets in Resources */,
 				A444C3311B3B031B0055C5D0 /* Main.storyboard in Resources */,
