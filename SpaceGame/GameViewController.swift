@@ -28,8 +28,9 @@ class GameViewController: UIViewController
 
         // Configure the main view.
         let skView = view as! SKView
+        
         // Turns on the frames per second display.
-//        skView.showsFPS = true
+        //skView.showsFPS = true
         //skView.showsNodeCount = true;
 
 

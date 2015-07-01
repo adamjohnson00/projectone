@@ -31,6 +31,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate
 
     var explosiontest : SKSpriteNode?
 
+    
+
     // Sound variables.
     var shootLowNoiseSoundAction = SKAction.playSoundFileNamed("lowblast.wav", waitForCompletion: false)
     var shootNoiseSoundAction = SKAction.playSoundFileNamed("blast.wav", waitForCompletion: false)
@@ -74,7 +76,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate
         userInteractionEnabled = true
 
 
-        println("The size is (\(size.width), \(size.height)).")
+        //println("The size is (\(size.width), \(size.height)).")
 
         addBackground()
 
@@ -88,7 +90,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate
 
     func addBackground()
     {
-        backgroundOne = SKSpriteNode(imageNamed: "1200")
+        backgroundOne = SKSpriteNode(imageNamed: "sparsespace")
         backgroundOne!.anchorPoint = CGPoint(x: 0.5, y: 0)
         backgroundOne!.position = CGPoint(x: self.size.width / 2.0, y: 0)
 
@@ -98,9 +100,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate
 
     func addBackgroundTwo()
     {
-        backgroundTwo = SKSpriteNode(imageNamed: "Background")
+        backgroundTwo = SKSpriteNode(imageNamed: "sparsespace")
         backgroundTwo!.anchorPoint = CGPoint(x: 0.5, y: 0)
-        backgroundTwo!.position = CGPoint(x: self.size.width / 2.0, y: backgroundOne!.position.y + 1200)
+        backgroundTwo!.position = CGPoint(x: self.size.width / 2.0, y: backgroundOne!.position.y + backgroundOne!.size.height)
 
         addChild(backgroundTwo!)
     }
@@ -271,6 +273,46 @@ class GameScene: SKScene, SKPhysicsContactDelegate
             shootLaserThree()
             shootLaserFour()
         }
+
+
+
+
+
+        if playerNode != nil
+        {
+            if !playerNode!.physicsBody!.dynamic
+            {
+                // Removes the "Tap Anywhere to Start" label once the screen has been tapped.
+//                startGameTextNode.removeFromParent()
+
+
+
+                playerNode!.physicsBody!.dynamic = true
+
+                self.coreMotionManager.accelerometerUpdateInterval = 0.3
+
+                self.coreMotionManager.startAccelerometerUpdatesToQueue(NSOperationQueue(), withHandler:
+                    {
+                        (data: CMAccelerometerData!, error: NSError!) in
+
+                        if let constVar = error
+                        {
+                            println("An error was encountered.")
+                        }
+                        else
+                        {
+                            self.xAxisAcceleration = CGFloat(data!.acceleration.x)
+                        }
+                })
+            }
+        }
+
+
+        
+
+
+
+
     }
 
 
@@ -302,12 +344,80 @@ class GameScene: SKScene, SKPhysicsContactDelegate
     }
 
 
+    override func didSimulatePhysics()
+    {
+
+
+        if playerNode != nil
+        {
+            if !playerNode!.physicsBody!.dynamic
+            {
+                // Removes the "Tap Anywhere to Start" label once the screen has been tapped.
+                //                startGameTextNode.removeFromParent()
+
+
+
+                playerNode!.physicsBody!.dynamic = true
+
+                self.coreMotionManager.accelerometerUpdateInterval = 1
+
+                self.coreMotionManager.startAccelerometerUpdatesToQueue(NSOperationQueue(), withHandler:
+                    {
+                        (data: CMAccelerometerData!, error: NSError!) in
+
+                        if let constVar = error
+                        {
+                            println("An error was encountered.")
+                        }
+                        else
+                        {
+                            self.xAxisAcceleration = CGFloat(data!.acceleration.x)
+                        }
+                })
+            }
+        }
+
+
+
+        if playerNode != nil
+        {
+
+            self.playerNode!.physicsBody!.velocity = CGVectorMake(self.xAxisAcceleration * 380.0, self.playerNode!.physicsBody!.velocity.dy)
+
+
+            //These two if statements move the player to the oppposite side of the screen if it touches the edge.
+//            if playerNode!.position.x < -(playerNode!.size.width / 2)
+//            {
+//                playerNode!.position = CGPointMake(size.width - playerNode!.size.width / 2, playerNode!.position.y)
+//            }
+//
+//            else if self.playerNode!.position.x > self.size.width
+//            {
+//                playerNode!.position = CGPointMake(playerNode!.size.width / 2, playerNode!.position.y)
+//            }
+        }
+    }
+
+
+
+    deinit
+    {
+        self.coreMotionManager.stopAccelerometerUpdates()
+    }
+
+
+
+
+
+
+
+
     // This is the code that causes the fire explosion when a bad guy dies.
     func explode()
     {
         fireExplosion!.hidden = false
 
-        NSTimer.scheduledTimerWithTimeInterval(1.2, target: self, selector: "hideExplosion:", userInfo: nil, repeats: false)
+        NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: "hideExplosion:", userInfo: nil, repeats: false)
     }
 
 
@@ -323,17 +433,18 @@ class GameScene: SKScene, SKPhysicsContactDelegate
 
     override func update(currentTime: NSTimeInterval)
     {
-        backgroundOne!.position = CGPointMake(self.size.width / 2, backgroundOne!.position.y - 10)
-        backgroundTwo!.position = CGPointMake(self.size.width / 2, backgroundTwo!.position.y - 10)
+        backgroundOne!.position = CGPointMake(self.size.width / 2, backgroundOne!.position.y - 8)
 
-        if backgroundOne!.position.y < -1200
+        backgroundTwo!.position = CGPointMake(self.size.width / 2, backgroundTwo!.position.y - 8)
+
+        if backgroundOne!.position.y < -800 //-backgroundOne!.size.height
         {
-            backgroundOne!.position = CGPointMake(self.size.width / 2, backgroundTwo!.position.y + 1200)
+            backgroundOne!.position = CGPointMake(self.size.width / 2, backgroundTwo!.position.y + 800)
         }
 
-        if backgroundTwo!.position.y < -1200
+        if backgroundTwo!.position.y < -800 //-backgroundTwo!.size.height
         {
-            backgroundTwo!.position = CGPointMake(self.size.width / 2, backgroundOne!.position.y + 1200)
+            backgroundTwo!.position = CGPointMake(self.size.width / 2, backgroundOne!.position.y + 800)
         }
     }
 
@@ -353,7 +464,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate
 
         blueLaserOne!.anchorPoint = CGPoint(x: 0.5, y: 0.5)
 
-        blueLaserOne!.position = CGPoint(x: playerNode!.position.x - 10, y: playerNode!.position.y + 24)
+        blueLaserOne!.position = CGPoint(x: playerNode!.position.x - 10, y: playerNode!.position.y + 55) //24
 
         blueLaserOne!.physicsBody = SKPhysicsBody(circleOfRadius: blueLaserOne!.size.width / 2)
 
@@ -389,7 +500,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate
 
         blueLaserTwo!.anchorPoint = CGPoint(x: 0.5, y: 0.5)
 
-        blueLaserTwo!.position = CGPoint(x: playerNode!.position.x + 10, y: playerNode!.position.y + 24)
+        blueLaserTwo!.position = CGPoint(x: playerNode!.position.x + 10, y: playerNode!.position.y + 55)
 
         blueLaserTwo!.physicsBody = SKPhysicsBody(circleOfRadius: blueLaserTwo!.size.width / 2)
 
@@ -425,7 +536,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate
 
         blueLaserThree!.anchorPoint = CGPoint(x: 0.5, y: 0.5)
 
-        blueLaserThree!.position = CGPoint(x: playerNode!.position.x - 25, y: playerNode!.position.y)
+        blueLaserThree!.position = CGPoint(x: playerNode!.position.x - 25, y: playerNode!.position.y + 55)
 
         blueLaserThree!.physicsBody = SKPhysicsBody(circleOfRadius: blueLaserThree!.size.width / 2)
 
@@ -462,7 +573,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate
 
         blueLaserFour!.anchorPoint = CGPoint(x: 0.5, y: 0.5)
 
-        blueLaserFour!.position = CGPoint(x: playerNode!.position.x + 25, y: playerNode!.position.y)
+        blueLaserFour!.position = CGPoint(x: playerNode!.position.x + 25, y: playerNode!.position.y + 55)
 
         blueLaserFour!.physicsBody = SKPhysicsBody(circleOfRadius: blueLaserFour!.size.width / 2)
 
